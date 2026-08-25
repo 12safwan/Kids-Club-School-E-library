@@ -1,0 +1,1926 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <script>
+    window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260825-05-ee72b97","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');
+  </script>
+
+  <script
+    src="/_sdk/50d846425a1e5082.telemetry_sdk.js"
+    integrity="sha512-Otbex+ztlVbcEGql0rXGd/3E3ee/hqAntg6DeuUEMG6pIPbXGOSvZbFZVzknAXi1tH/itQ+ijEhOTr2aWj6CXg==">
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kids Club E-Library</title>
+
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js">
+  </script>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,700;9..144,800&display=swap"
+    rel="stylesheet">
+
+
+  <style>
+
+    :root {
+      --ink:#17324d;
+      --paper:#fffdf4;
+      --sun:#f6b92a;
+      --coral:#ef6b56;
+      --mint:#4ab99d;
+    }
+
+    * {
+      box-sizing:border-box;
+    }
+
+    body {
+      margin:0;
+      font-family:"DM Sans",sans-serif;
+      color:var(--ink);
+      background:#fff8e9;
+    }
+
+    .app-shell {
+      width:100%;
+      min-height:calc(100 * min(var(--vh, 1vh), 1vh));
+      overflow:hidden;
+    }
+
+    .hero-pattern {
+      background-color:#17324d;
+      background-image:
+        radial-gradient(
+          rgba(255,255,255,.12) 1px,
+          transparent 1px
+        );
+      background-size:18px 18px;
+    }
+
+    .title-font {
+      font-family:"Fraunces",serif;
+    }
+
+    .book-card {
+      display:flex;
+      flex-direction:column;
+      height:100%;
+      transition:
+        transform .22s ease,
+        box-shadow .22s ease;
+    }
+
+    .book-card > div:last-child {
+      flex:1;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .book-card:hover {
+      transform:translateY(-7px) rotate(-.5deg);
+      box-shadow:
+        0 18px 32px rgba(23,50,77,.17);
+    }
+
+    .book-grid {
+      align-items:stretch;
+    }
+
+    @media (max-width:419px) {
+
+      .book-grid {
+        grid-template-columns:1fr !important;
+      }
+
+    }
+
+    @media (min-width:420px) and (max-width:639px) {
+
+      .book-grid {
+        grid-template-columns:
+          repeat(2,minmax(0,1fr)) !important;
+      }
+
+    }
+
+    @media (min-width:640px) and (max-width:767px) {
+
+      .book-grid {
+        grid-template-columns:
+          repeat(3,minmax(0,1fr)) !important;
+      }
+
+    }
+
+    .book-card:focus-within {
+      outline:3px solid var(--sun);
+      outline-offset:4px;
+    }
+
+    .cover-frame {
+      aspect-ratio:3/4;
+      overflow:hidden;
+      background:#d9e9df;
+    }
+
+    .cover-frame img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .35s ease;
+    }
+
+    .book-card:hover img {
+      transform:scale(1.05);
+    }
+
+    .letter-filter.active {
+      background:#17324d;
+      color:#fff;
+      border-color:#17324d;
+    }
+
+    .book-card.is-hidden {
+      display:none;
+    }
+
+    .book-card.is-match {
+      order:-1;
+    }
+
+    .reveal {
+      animation:reveal .55s both;
+    }
+
+    @keyframes reveal {
+
+      from {
+        opacity:0;
+        transform:translateY(16px);
+      }
+
+      to {
+        opacity:1;
+        transform:translateY(0);
+      }
+
+    }
+
+    .book-grid > article:nth-child(2n) {
+      animation-delay:.04s;
+    }
+
+    .book-grid > article:nth-child(3n) {
+      animation-delay:.08s;
+    }
+
+    .book-grid > article:nth-child(4n) {
+      animation-delay:.12s;
+    }
+
+    .book-author {
+      margin-top:auto;
+      padding-top:8px;
+    }
+
+  </style>
+
+
+  <script
+    src="/_sdk/b3bf9e8ac58e6ad6.data_sdk.js"
+    type="text/javascript"
+    integrity="sha512-otc1u9NYq9Ms5Jt//7vmhrrqR5CLPr8Jdgs6741gqniClfLMcfmC+jK/cKuQdhLv6G0esJ/FzaMS9tv0T/vj/Q==">
+  </script>
+
+  <script
+    src="/_sdk/a27879be4562f807.resizing_sdk.js"
+    type="text/javascript"
+    integrity="sha512-trcxRwz+QLrzK0Dqg95xqVRryR7WtWui2YopXyzOIr3WMde3j/xCRgT63/b/EAg7klDsAOuHzoRgoryhwm8QFw==">
+  </script>
+
+
+  <!-- EPUB READER -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/epubjs@0.3.93/dist/epub.min.js"></script>
+
+
+<style id="epub-reader-styles">
+  #epub-reader-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    background: #17324d;
+    padding: 18px;
+    box-sizing: border-box;
+  }
+  #epub-reader-overlay.open { display: flex; flex-direction: column; }
+  #epub-reader-top {
+    height: 52px; flex: 0 0 52px; display:flex; align-items:center; justify-content:space-between;
+    color:white; gap:12px;
+  }
+  #epub-reader-title { font-weight:700; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  #epub-reader-close {
+    border:0; background:#ef6b56; color:white; width:42px; height:42px; border-radius:50%;
+    font-size:24px; cursor:pointer; flex:0 0 auto;
+  }
+  #epub-reader-body {
+    min-height:0; flex:1; display:flex; align-items:center; justify-content:center; gap:12px;
+  }
+  #epub-reader-viewer {
+    width:min(1000px, 92vw); height:calc(100vh - 120px); background:#fff; border-radius:14px; overflow:hidden;
+    box-shadow:0 10px 40px rgba(0,0,0,.35);
+  }
+  .epub-reader-nav {
+    width:48px; height:64px; border:0; border-radius:12px; background:white; color:#17324d;
+    font-size:36px; cursor:pointer; flex:0 0 auto;
+  }
+  #epub-reader-status { height:36px; flex:0 0 36px; color:rgba(255,255,255,.75); display:flex; align-items:center; justify-content:center; font-size:12px; }
+  @media (max-width:700px) {
+    #epub-reader-overlay { padding:8px; }
+    #epub-reader-top { height:46px; flex-basis:46px; }
+    #epub-reader-viewer { width:100%; height:calc(100vh - 100px); border-radius:10px; }
+    .epub-reader-nav { width:38px; height:52px; font-size:28px; }
+  }
+</style>
+</head>
+
+
+<body
+  data-template-id="__page-root"
+  style="background:rgb(255, 248, 233);">
+
+
+  <div class="app-shell">
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header class="hero-pattern relative">
+
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-[#17324d]/35 via-transparent to-[#ef6b56]/25">
+      </div>
+
+
+      <div
+        class="relative w-full max-w-7xl mx-auto px-5 sm:px-8 pt-6 pb-7 sm:pt-7 sm:pb-8">
+
+
+        <div class="flex items-center gap-3 text-white/90">
+
+          <div
+            class="w-11 h-11 rounded-2xl bg-[#f6b92a] text-[#17324d] flex items-center justify-center shadow-lg">
+
+            <i
+              data-lucide="book-open"
+              width="23"
+              height="23">
+            </i>
+
+          </div>
+
+
+          <p
+            data-template-id="library-kicker"
+            class="canva-text text-sm font-bold tracking-[.16em] uppercase"
+            style="
+              color:rgb(255,255,255);
+              font-weight:700;
+              font-style:normal;
+              font-size:13px;
+              letter-spacing:0.12rem;
+            ">
+
+            Kids Club Matric Higher Secondary School
+
+          </p>
+
+        </div>
+
+
+        <div
+          class="mt-6 sm:mt-7 grid lg:grid-cols-[1.3fr_.7fr] gap-6 lg:gap-8 items-center">
+
+
+          <div>
+
+            <h1
+              data-template-id="library-title"
+              class="canva-text title-font text-white font-bold leading-[1.02] max-w-3xl"
+              style="
+                color:rgb(255,255,255);
+                font-weight:800;
+                font-style:normal;
+                font-size:48px;
+                line-height:1.05;
+              ">
+
+              Kids Club Matric's exclusive student E library
+
+            </h1>
+
+
+            <p
+              data-template-id="library-description"
+              class="canva-text text-white/85 mt-5 max-w-2xl text-lg leading-relaxed"
+              style="
+                color:rgb(245,240,221);
+                font-weight:400;
+                font-style:normal;
+                font-size:18px;
+                line-height:1.5;
+              ">
+
+              Explore, imagine and learn from our growing digital bookshelf.
+              Select a book title to begin reading.
+
+            </p>
+
+          </div>
+
+
+          <img
+            data-template-id="library-hero-image"
+            loading="lazy"
+            class="canva-image w-full h-52 sm:h-64 object-cover rounded-[2rem] border-4 border-white/20 shadow-2xl"
+            src="https://images.pexels.com/photos/2041540/pexels-photo-2041540.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1280"
+            alt="A cozy library space with bookshelves filled with books.">
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main
+      class="w-full max-w-7xl mx-auto px-5 sm:px-8 py-6 sm:py-8">
+
+
+      <!-- FINDER -->
+
+      <section
+        data-template-id="finder-panel"
+        class="canva-panel bg-white rounded-[2rem] shadow-[0_14px_35px_rgba(23,50,77,.10)] p-5 sm:p-7 -mt-16 relative"
+        style="background:rgb(255,255,255);">
+
+
+        <div
+          class="flex flex-col lg:flex-row lg:items-center gap-5 justify-between">
+
+
+          <div>
+
+            <h2
+              data-template-id="finder-title"
+              class="canva-text title-font font-bold text-[#17324d]"
+              style="
+                color:rgb(23,50,77);
+                font-weight:700;
+                font-style:normal;
+                font-size:24px;
+              ">
+
+              Find your next favourite book
+
+            </h2>
+
+
+            <p
+              data-template-id="finder-help"
+              class="canva-text mt-1 text-[#547088]"
+              style="
+                color:rgb(84,112,136);
+                font-weight:400;
+                font-style:normal;
+                font-size:16px;
+              ">
+
+              Search by title or browse our bookshelf alphabetically.
+
+            </p>
+
+          </div>
+
+
+          <label
+            class="relative block w-full lg:w-[360px]"
+            for="book-search">
+
+            <span class="sr-only">
+              Search books
+            </span>
+
+
+            <i
+              data-lucide="search"
+              class="absolute left-4 top-1/2 -translate-y-1/2 text-[#547088]"
+              width="19"
+              height="19">
+            </i>
+
+
+            <input
+              id="book-search"
+              data-template-id="search-input"
+              class="canva-input w-full rounded-2xl border-2 border-[#d9e4e8] bg-[#fffdf4] py-3.5 pl-11 pr-4 text-[#17324d] outline-none focus:border-[#ef6b56] focus:ring-4 focus:ring-[#ef6b56]/15"
+              type="search"
+              placeholder="Search the e-library..."
+              style="
+                color:rgb(23,50,77);
+                font-weight:400;
+                font-style:normal;
+                font-size:16px;
+              ">
+
+          </label>
+
+        </div>
+
+
+
+        <!-- ALPHABET -->
+
+        <nav
+          aria-label="Alphabetical book filters"
+          class="mt-6 pt-5 border-t border-[#edf0e6]">
+
+
+          <div
+            class="flex gap-2 overflow-x-auto pb-1">
+
+
+            <button
+              type="button"
+              class="letter-filter active rounded-xl border border-[#d4e0df] px-4 py-2 text-sm font-bold whitespace-nowrap transition"
+              data-letter="all">
+
+              All Books
+
+            </button>
+
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="a">A</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="b">B</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="c">C</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="d">D</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="e">E</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="f">F</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="g">G</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="h">H</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="i">I</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="j">J</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="k">K</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="l">L</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="m">M</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="n">N</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="o">O</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="p">P</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="q">Q</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="r">R</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="s">S</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="t">T</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="u">U</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="v">V</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="w">W</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="x">X</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="y">Y</button>
+
+            <button type="button" class="letter-filter rounded-xl border border-[#d4e0df] px-3 py-2 text-sm font-bold whitespace-nowrap transition" data-letter="z">Z</button>
+
+
+          </div>
+
+        </nav>
+
+      </section>
+
+
+
+      <!-- =========================================================
+           BOOKS
+      ========================================================== -->
+
+      <section
+        class="mt-7 sm:mt-8"
+        aria-labelledby="shelf-heading">
+
+
+        <div
+          class="flex flex-wrap justify-between items-end gap-3 mb-6">
+
+
+          <div>
+
+            <p
+              data-template-id="shelf-kicker"
+              class="canva-text uppercase tracking-[.18em] text-xs font-bold text-[#ef6b56]"
+              style="
+                color:rgb(239,107,86);
+                font-weight:700;
+                font-style:normal;
+                font-size:16px;
+                letter-spacing:0.12rem;
+              ">
+
+              The digital bookshelf
+
+            </p>
+
+
+            <h2
+              id="shelf-heading"
+              data-template-id="shelf-title"
+              class="canva-text title-font font-bold text-[#17324d] mt-1"
+              style="
+                color:rgb(23,50,77);
+                font-weight:700;
+                font-style:normal;
+                font-size:24px;
+              ">
+
+              15 books, ready to open
+
+            </h2>
+
+          </div>
+
+
+          <p
+            id="result-count"
+            class="text-sm font-semibold text-[#547088]"
+            aria-live="polite">
+
+            15 books ready to explore
+
+          </p>
+
+
+        </div>
+
+
+
+        <div
+          id="book-grid"
+          class="book-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 sm:gap-6">
+
+
+
+          <!-- =====================================================
+               01 — A CHRISTMAS CAROL
+          ====================================================== -->
+
+          <article
+            class="book-card reveal bg-white rounded-[1.45rem] overflow-hidden shadow-[0_8px_22px_rgba(23,50,77,.10)] p-2.5"
+            data-title="a christmas carol"
+            data-letter="a">
+
+
+            <div class="cover-frame rounded-[1rem]">
+
+              <a
+                href="A Christmas Carol.epub">
+
+                <img
+                  data-template-id="book-cover-1"
+                  loading="lazy"
+                  class="canva-image"
+                  src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781665977685/a-christmas-carol-9781665977685_hr.jpg"
+                  alt="Cover of A Christmas Carol">
+
+              </a>
+
+            </div>
+
+
+            <div class="p-2 pt-3">
+
+              <span class="text-xs font-bold text-[#ef6b56]">
+                A · 01
+              </span>
+
+
+              <a
+                data-template-id="book-title-1"
+                class="canva-link block mt-1 font-bold text-[#17324d] underline decoration-[#f6b92a] decoration-2 underline-offset-4 hover:text-[#ef6b56]"
+                href="A Christmas Carol.epub">
+
+                A Christmas Carol
+
+              </a>
+
+
+              <p class="mt-2 text-xs leading-relaxed text-[#547088]">
+
+                A timeless morality tale about generosity, redemption, and empathy.
+
+              </p>
+
+
+              <p class="book-author text-xs font-semibold text-[#17324d]">
+
+                Charles Dickens
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =====================================================
+               02 — AESOP'S FABLES
+          ====================================================== -->
+
+          <article
+            class="book-card reveal bg-white rounded-[1.45rem] overflow-hidden shadow-[0_8px_22px_rgba(23,50,77,.10)] p-2.5"
+            data-title="aesop's fables"
+            data-letter="a">
+
+
+            <div class="cover-frame rounded-[1rem]">
+
+              <a
+                href="Aesop's Fables.epub">
+
+                <img
+                  data-template-id="book-cover-2"
+                  loading="lazy"
+                  class="canva-image"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQghd7ovVQkAaUjVZEey1Ert1wcQfkcqzK3vKBFOF2ALw&s=10"
+                  alt="Cover of Aesop's Fables">
+
+              </a>
+
+            </div>
+
+
+            <div class="p-2 pt-3">
+
+              <span class="text-xs font-bold text-[#4ab99d]">
+                A · 02
+              </span>
+
+
+              <a
+                data-template-id="book-title-2"
+                class="canva-link block mt-1 font-bold text-[#17324d] underline decoration-[#f6b92a] decoration-2 underline-offset-4 hover:text-[#ef6b56]"
+                href="Aesop's Fables.epub">
+
+                Aesop's Fables
+
+              </a>
+
+
+              <p class="mt-2 text-xs leading-relaxed text-[#547088]">
+
+                Short, simple stories with clear moral lessons, perfect for younger students.
+
+              </p>
+
+
+              <p class="book-author text-xs font-semibold text-[#17324d]">
+
+                Aesop
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =====================================================
+               03 — ALICE'S ADVENTURES IN WONDERLAND
+          ====================================================== -->
+
+          <article
+            class="book-card reveal bg-white rounded-[1.45rem] overflow-hidden shadow-[0_8px_22px_rgba(23,50,77,.10)] p-2.5"
+            data-title="alice's adventures in wonderland"
+            data-letter="a">
+
+
+            <div class="cover-frame rounded-[1rem]">
+
+              <a
+                href="Alice in Wonderland.epub">
+
+                <img
+                  data-template-id="book-cover-3"
+                  loading="lazy"
+                  class="canva-image"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9VbE-hgtNgNj5bENrxfG_iTLxosmGpBsfIDg5wJILAQ&s"
+                  alt="Cover of Alice's Adventures in Wonderland">
+
+              </a>
+
+            </div>
+
+
+            <div class="p-2 pt-3">
+
+              <span class="text-xs font-bold text-[#ef6b56]">
+                A · 03
+              </span>
+
+
+              <a
+                data-template-id="book-title-3"
+                class="canva-link block mt-1 font-bold text-[#17324d] underline decoration-[#f6b92a] decoration-2 underline-offset-4 hover:text-[#ef6b56]"
+                href="Alice in Wonderland.epub">
+
+                Alice's Adventures in Wonderland
+
+              </a>
+
+
+              <p class="mt-2 text-xs leading-relaxed text-[#547088]">
+
+                A fantastical story that encourages imagination and wordplay.
+
+              </p>
+
+
+              <p class="book-author text-xs font-semibold text-[#17324d]">
+
+                Lewis Carroll
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =====================================================
+               04 — AROUND THE WORLD IN EIGHTY DAYS
+          ====================================================== -->
+
+          <article
+            class="book-card reveal bg-white rounded-[1.45rem] overflow-hidden shadow-[0_8px_22px_rgba(23,50,77,.10)] p-2.5"
+            data-title="around the world in eighty days"
+            data-letter="a">
+
+
+            <div class="cover-frame rounded-[1rem]">
+
+              <a
+                href="Around the world in eighty days.epub">
+
+                <img
+                  data-template-id="book-cover-4"
+                  loading="lazy"
+                  class="canva-image"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ98MvEaUq_GGkVeLu0PfM5ryz7AZwLD_fTQBkOljUkCQ&s=10"
+                  alt="Cover of Around the World in Eighty Days">
+
+              </a>
+
+            </div>
+
+
+            <div class="p-2 pt-3">
+
+              <span class="text-xs font-bold text-[#4ab99d]">
+                A · 04
+              </span>
+
+
+              <a
+                data-template-id="book-title-4"
+                class="canva-link block mt-1 font-bold text-[#17324d] underline decoration-[#f6b92a] decoration-2 underline-offset-4 hover:text-[#ef6b56]"
+                href="Around the world in eighty days.epub">
+
+                Around the World in Eighty Days
+
+              </a>
+
+
+              <p class="mt-2 text-xs leading-relaxed text-[#547088]">
+
+                A fast-paced adventure exploring geography and global cultures.
+
+              </p>
+
+
+              <p class="book-author text-xs font-semibold text-[#17324d]">
+
+                Jules Verne
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =====================================================
+               05 — THE ADVENTURES OF SHERLOCK HOLMES
+          ====================================================== -->
+
+          <article
+            class="book-card reveal bg-white rounded-[1.45rem] overflow-hidden shadow-[0_8px_22px_rgba(23,50,77,.10)] p-2.5"
+            data-title="the adventures of sherlock holmes"
+            data-letter="t">
+
+
+            <div class="cover-frame rounded-[1rem]">
+
+              <a
+                href="Adventures of Sherlock Holmes.epub">
+
+                <img
+                  data-template-id="book-cover-5"
+                  loading="lazy"
+                  class="canva-image"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwp2cX00JZFgFf8wjbWNKu92_xkH1X-2hRQDQeowhukw&s=10"
+                  alt="Cover of The Adventures of Sherlock Holmes">
+
+              </a>
+
+            </div>
+
+
+            <div class="p-2 pt-3">
+
+              <span class="text-xs font-bold text-[#ef6b56]">
+                T · 05
+              </span>
+
+
+              <a
+                data-template-id="book-title-5"
+                class="canva-link block mt-1 font-bold text-[#17324d] underline decoration-[#f6b92a] decoration-2 underline-offset-4 hover:text-[#ef6b56]"
+                href="Adventures of Sherlock Holmes.epub">
+
+                The Adventures of Sherlock Holmes
+
+              </a>
+
+
+              <p class="mt-2 text-xs leading-relaxed text-[#547088]">
+
+                A collection of brilliant detective stories that build critical thinking skills.
+
+              </p>
+
+
+              <p class="book-author text-xs font-semibold text-[#17324d]">
+
+                Arthur Conan Doyle
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =====================================================
+               06 — THE ADVENTURES OF TOM SAWYER
+          ====================================================== -->
+
+          <article
+            class="book-card reveal bg-white rounded-[1.45rem] overflow-hidden shadow-[0_8px_22px_rgba(23,50,77,.10)] p-2.5"
+            data-title="the adventures of tom sawyer"
+            data-letter="t">
+
+
+            <div class="cover-frame rounded-[1rem]">
+
+              <a
+                href="Adventures of Tom Sawyer.epub">
+
+                <img
+                  data-template-id="book-cover-6"
+                  loading="lazy"
+                  class="canva-image"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXvM1f13U9J882ec0rMK-I7j5-0vruimCM1HEsS9WFqw&s=10"
+                  alt="Cover of The Adventures of Tom Sawyer">
+
+              </a>
+
+            </div>
+
+
+            <div class="p-2 pt-3">
+
+              <span class="text-xs font-bold text-[#4ab99d]">
+                T · 06
+              </span>
+
+
+              <a
+                data-template-id="book-title-6"
+                class="canva-link block mt-1 font-bold text-[#17324d] underline decoration-[#f6b92a] decoration-2 underline-offset-4 hover:text-[#ef6b56]"
+                href="Adventures of Tom Sawyer.epub">
+
+                The Adventures of Tom Sawyer
+
+              </a>
+
+
+              <p class="mt-2 text-xs leading-relaxed text-[#547088]">
+
+                A classic tale of American boyhood, adventure, and mischief.
+
+              </p>
+
+
+              <p class="book-author text-xs font-semibold text-[#17324d]">
+
+                Mark Twain
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =====================================================
+               07 — THE CALL OF THE WILD
+          ====================================================== -->
+
+          <article
+            class="book-card reveal bg-white rounded-[1.45rem] overflow-hidden shadow-[0_8px_22px_rgba(23,50,77,.10)] p-2.5"
+            data-title="the call of the wild"
+            data-letter="t">
+
+
+            <div class="cover-frame rounded-[1rem]">
+
+              <a
+                href="The Call of the Wild.epub">
+
+                <img
+                  data-template-id="book-cover-7"
+                  loading="lazy"
+                  class="canva-image"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-y9bwOnjS78f_Q4JUKh-DqZ7dJY8hw8HrTP9oF8arHg&s=10"
+                  alt="Cover of The Call of the Wild">
+
+              </a>
+
+            </div>
+
+
+            <div class="p-2 pt-3">
+
+              <span class="text-xs font-bold text-[#ef6b56]">
+                T · 07
+              </span>
+
+
+              <a
+                data-template-id="book-title-7"
+                class="canva-link block mt-1 font-bold text-[#17324d] underline decoration-[#f6b92a] decoration-2 underline-offset-4 hover:text-[#ef6b56]"
+                href="The Call of the Wild.epub">
+
+                The Call of the Wild
+
+              </a>
+
+
+              <p class="mt-2 text-xs leading-relaxed text-[#547088]">
+
+                A powerful survival story told from the perspective of a sled dog named Buck.
+
+              </p>
+
+
+              <p class="book-author text-xs font-semibold text-[#17324d]">
+
+                Jack London
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =====================================================
+               08 — FRANKENSTEIN
+          ====================================================== -->
+
+          <article
+            class="book-card reveal bg-white rounded-[1.45rem] overflow-hidden shadow-[0_8px_22px_rgba(23,50,77,.10)] p-2.5"
+            data-title="frankenstein"
+            data-letter="f">
+
+
+            <div class="cover-frame rounded-[1rem]">
+
+              <a
+                href="Frankenstein.epub">
+
+                <img
+                  data-template-id="book-cover-8"
+                  loading="lazy"
+                  class="canva-image"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSq-URD0Yl4wHgdYLHgE_QMM2f2fuIBA4_FddlurqPaA&s=10"
+                  alt="Cover of Frankenstein">
+
+              </a>
+
+            </div>
+
+
+            <div class="p-2 pt-3">
+
+              <span class="text-xs font-bold text-[#4ab99d]">
+                F · 08
+              </span>
+
+
+              <a
+                data-template-id="book-title-8"
+                class="canva-link block mt-1 font-bold text-[#17324d] underline decoration-[#f6b92a] decoration-2 underline-offset-4 hover:text-[#ef6b56]"
+                href="Frankenstein.epub">
+
+                Frankenstein
+
+              </a>
+
+
+              <p class="mt-2 text-xs leading-relaxed text-[#547088]">
+
+                A foundational sci-fi novel exploring science, ethics, and humanity.
+
+              </p>
+
+
+              <p class="book-author text-xs font-semibold text-[#17324d]">
+
+                Mary Shelley
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =====================================================
+               09 — GRIMMS' FAIRY TALES
+          ====================================================== -->
+
+          <article
+            class="book-card reveal bg-white rounded-[1.45rem] overflow-hidden shadow-[0_8px_22px_rgba(23,50,77,.10)] p-2.5"
+            data-title="grimms' fairy tales"
+            data-letter="g">
+
+
+            <div class="cover-frame rounded-[1rem]">
+
+              <a
+                href="Grimm's Fairy Tales.epub">
+
+                <img
+                  data-template-id="book-cover-9"
+                  loading="lazy"
+                  class="canva-image"
+                  src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUUExMWFhUXFyAbGBcYGCEfHhggICAgHyEfICEeIiggIiImHiEeITIlJykrLi4uHSAzODMuNygtLisBCgoKDg0OGxAQGy8iICYwMC4vNzUtLS8tNS0tLTctLTctLS0vLy0tLS0vLy0tLy8tLy0vLS8tLTUtLS0vLS0tLf/AABEIAQoAvgMBIgACEQEDEQH/xAAcAAACAwEBAQEAAAAAAAAAAAAFBgMEBwACAQj/xABAEAACAQIEBAQDBgIJBAMBAAABAhEDIQAEEjEFE0FRBiJhcTKBkQcUI0KhsRVSM2JyksHR4fDxJEOCohaywiX/xAAbAQACAwEBAQAAAAAAAAAAAAACAwABBAUGB//EADIRAAEDAgQFAgUEAgMAAAAAAAEAAhEDIQQSMUETUWFx8CKRgaGxwdEykuHxQlIFIzP/2gAMAwEAAhEDEQA/AH5WxMrYH5eurqrC6sAR6gif2wMydWcrRpydVVIs0MREuQSZmOvQkY5jRK7LyAmYNj7OFk8RZsumpiClVaeYKm66TDG3wgkAk9FYmRvixn6gWnWOXPn0LIS5Ak3AH5o1R1JA7YIs2Ss4Nx3R0HH3AJnXmUGoMCCx1hTIZNDeZr7hwkNvJjqcU+H5j8VCrAzmKylVbzRLxqG2lY9IlY7GBlkBfBjzb8ppnHknAnjmZ0qq61TW0anYqtgTBYEESBaP1iD3BM7zFJ1klQFKGNSECCWgTLGT2IgjfFZTlzK83qyopOPDHAbi1MioReMynKtPlcSQwjbyFiTI/o1649cKc1AHcQyKabWgalMOR3EgQffviyy0q2ul2WEUnHmcLhqL90pnUI+8IJnf8cAj+7b29MXuK5lSqFWU/jovxQJnaR6e+LyXVh9p6A+6LY+jAlHP3pQ2kHksYDTPmW8ED1+pxX4FVU6P6PeoAQ8sSGMCI20g9TEDFZLSpnvHm35TBj6cBuAZlNBXUsmvWAE3MVHj5BQPkBinSzRCPTBJR1eolQGyrJ1rq6aTEduYI+E4nDuQh4lgeaZMfYxTyLzQQpBPLBXsTp7++BeVzKcqgx89UsiuWaHDkjVI3sZlLCBa0YoMlGXRCPnHmcLmZrAVqhkBVzFPXUDXpjloYI/kY+U3trJi04IB1+9ESJ5IMT/Wa8e0XxDThW2pJjrCJE4+zhYXMkUXphiVam1VKgNlSCXXVO4aw2gOsfCcWs5WgUGQyyUjUCg/0ijQGEdfKxI/rRi+FdTjCJhHDjw2BOQzGrM1CSb0abKpOylqnToSApPW4B2GJ/EPEBlqSVWurNpHvBMfpiuES6Aj4zQ3MdFUp52ipo5emzDUh5TJEEU4BEkETHptOCKKtNQBCoggdgAO5xm2VylahlamaDh1pMAQSdWppuY2U+VbeuK3GM67sruaj6gFFAOdJiAFgAC7bmJvaOjnUDNtFlp4xsXF9lqtOrIBBsbgjrj0rR6YXs94qy9NjSXVUqLAKUlm8bdtu049VeOasvmGEUqtFLipsjMupJI9wYE9t8I4blt4jOaYVbEinCjw3jNavRpJlnp87Sut64IJAEF1RbmSJEkWYYcaa4s0yNVWYG4X1ROPZQ3MT1xZo0cU+N5jlgIBNSorrTvuwWRvbeMWGpLqkKWoIA23Aue5jH00cBK+VzFXIIkqlRSNTapshkEaZk2W3ecXuA8U5z1qZjVTYbbGwBP98N9Rg4bsUAqlWXpDtiJkGL9VMVahExIntisqc1yg046AMV6nEYrijyqnmUsKkDQY3EzMi1ovNtjEFSnmvvQgp915d5Hn1zt0sRfrtijTRZwr4HpjpwH8U+H6maWmqZhqIVwzAKTrA/KYYW9MXOKZVjlqqC7mmwGgRJgxpBJAO25wOTqpm1src4+x1i+Frwvka2UyiHNVa1VzdlhqpUnZRpDNbvMXOKHHfHypFPK0atXNE2pPSqKQL+YggEi2w/wwQpGbITVaGy6ycq9RUUs5VVG7MQAPcnAL/wCW5UVCpeKYUEVoPLJJjSGiJFvS+COVyzPRQ5tKRq6PPCyqki4EydreuAXFEybZdMirAI6BqUmVs0rJ3gsInt12wbGA2VPeQJ0RujxrLu5ppVRiE5h0mQF7ki2PNXjNLRVZHVzSQsQDuAs2PbpIxnud4tyTXrLSGXzSNB0gGm62BpsNjcAhhe++F+nxVdLVacUwWh6c+VQwaVH9UiR8vTDxhhusxxh2CeOG+Lq+czDLlQhRaZYKyN5yqqWXX3kkCBHlm84Va3iCvmXdarMaflZRssxG2wbcH549cU4Y9BMvqUNRqp5SLg7W9CNiMLWarmjdbpJHKIlVa1wLDp779zjS2mxlwFgfVfUEOKZshxivSZaqNoQgrosQw66wZU+i3i98SZviDCqAkMxVCNPlUarkmAI0gDb1wL4fndCsTp0NUKy5sEUAEgQZNjbuce8vXSKlQgIkgIpEFgFAVQOxNyNzMbTKyCDMqszS0DLcbo/xXN6aQ5Nc0aZhnNNdL1DAAk/ETA2Ht0wHc1KwCxUbW0ikplidg9QmQT0E2EdYt7p8LqaFzFdHOuoERR0LTc+oUMZG0RjVvs04VlzSYkKWLnTNz5YBN7zIifTAtEBXmJdG3yhAfDfhV6dWlXquy1CC2izX+EywAXrsAPSww+0aeCFPh7NSq0XhZ1Kjqb6WFj3DAk/QH2oZfLcoLT/lUASe1v8ADCXsi66LK+cRyV2kmFfxlw2rUq0HWoiBDCkzOssIsB6LvhsoDATxRnfKBTYh1a5CzHeR+nzxlxLiymXA3QtBc6Fbp1AFIMT6d8CuB8ASjXaoDUJYGWLCCWJlYAnsZxBmeLIoDOyqCYBZgJPa5xMeKUk1VXZRyUJe58qmDcD+zPyPrjn0qtQEcv58Ce+nZG8yrBwIGmLmdj2jA2pk6auapEPAUtJ2mw7ROC1CrzFDWxWzhpkFSwJ/lDCe+2OxTGYSEkOy2Kpfelv6friWiwbbfsd8Bs+pRkfRUYOwSAfjbzaSJ6SLg2i82glsrw2qApfQTuQmy+xNz9BvthhYi4qndQNyBiLmre4tjs7k6nmKqGO+mYLDsDtPae/TAunUNQnlkFbFpJBBG6gQSSDEiLSRM7Vw1BVRbTihxLhdGsyGogZkMoTYqfQi4+WKHEOH54NzcvWAWL0agDAjupiQd7EgG218LnizMVswlOjWXRUTzGIliI0uvVSLgwYv0xAwDeFHVT/rKtcZ4/XoNBAqoyklQp1SCupRt8Ia9juMJteiKmmpTckBjAb+UsZG1iL2Pc4mzlWrVoq3MBqUWAZwbsGOjzDqZZQTcmBPrUyFAtl11Aq+osDt8TFpiexi/fDadPLBOqzV6+dpA0RXxNwoKlOpTfmJUGu8EyB5kYdSDF8AuOcO1Kra1RUvD7C/ZRJ7ftvGGKvlKi01bTIcWM2Ji4J6HcQf9cD85l+aGQrcXWR5Z6W6i9psZPrhhckU2xdUc7nq9TLqKTHk6iVBE6WBgm/ft88eOHcJrZhD+AzuCNQpgnvBIFx1H+xiLiWWKlRrKUmhmOoArAjlqq/yybAbm+2LfBuJ1qDGplaxUlYIN7GD+4GDY6UFSmG9kq0eEMtKnWrhxSqFloMNmK/+wUk7gXvhi4OKfKNRKcVB5ZnWZ2sZPvht8ZZCpnMrTC5epTytFFVKjLEtAGoLM6Z8sxe97zgNkcqqCnpIkopdgDDSJt36HV1mxjddR2Rso6dPiuyzH08Jsoambr8vVVcK1JEJA2KqznTHSR+pOHPwZwlBToNmM2KdV/NTo0n/ABDPmYm/lncgCwIvOFPL5A1c4tOpWCqVLu38qofLbvqaQO4x8oZdJAfS3nmmRMyL6h1HfCg8mIGqjqTWZsxuDpv4Fr/EfHFNGNNFLMtpLDf9ThO4DxWpVzTVa7LzG18qm7QKYgxAJ3Nh6yfkoUKWsfeFR3cuU9BpuenRR8pGLz5xXBmkyZkN5YIKhSIJe8z1AO8COpDNUAeWmZTjxTx3Uopl1pU6dWq4Brtq8lKI1Cxu0zYG0YBZvxKtbMq5DqS0AAyskab9xt03wueHuAZuvWajTUmxljYD1J6T+598es94MrZWm9Q10qqr6WK1tZR/5TYEHr8jgX4dlZuU28hO47qT5BBHhUnjqioWly9tbkje7wxMepB+uCPAuPIuWQEqKmgq0xMJIWRuQBiTgXh3Kfw+rnq/Oq6H0GkrBBJKj4hJPxDt1t1x3ijgOXpUqHEMmDyavkakx+AkHykqZgwQwJ363sJwbXUxTcSYOqIYwh5eBEjTyFWPiutGk1YHXQYBJ3PzxFl+PFTO/wA4+eDn2Y1EqtXp1KGWZUotUDNRUkMCIk9hJ6YEeCcsuZ4hSWqqurly4iAYRjYCIExttbGxjWsEAWCw1CXkOOpR5vGSN91LhiaVUs8L00MoO9yCcNtDxZlmEhmFv5TbGZeIsjys3XoKsAVDoUXs11H0Iw0nhaUc9QyKawGhnaQS0oZ0yttiOov0gzTqbEQxFXSyaf8A5TlYk1QB6q3+WKHh3idCrSZzURS9ao6yQCAWMGD6focI3irKHLZmpRGrQI0luoIB3i+8Y+Z3hZytOhWcEtXptA1fDBBBiOxFve4nAmi3ZW3FPvmAstPzedpUqTPd1UbUwXY+wWcZt4n47kM0JSmxdbliumPpefYjpvti5wXguZzNNqlMAKJhy0aiOi/tO0+2KuQ4BmKrOEpMWp/GDAIuRFzcyCPliuE0Kzi3kRET8fskitlGYVH0VGUwxFy0AhiSOq29xvcbNuXq0Gy7q1qykPTYX1AxKN+4Jx5TO1lvQYrMgltSyLSLXEGekWOAoZlkCkdI2ZTq5Z7W82n0i222wtqSOSKrTM8/O6M5XNkg0jIuWC9DH5hYd+wxVhlqK2vUHIhAZEEi6nr6/OO2LPC84IGpi5LQSsR2HX9PrhopcHy2oVE5q1JlzK6D1IAIJk+kHucKAgymPOjSIn6LPK3AS/NqENoLkI/5ZPmI/UHAHmuvlDERjTqfOy716aUg2XrvO8hZEExuCCAel+pwv53wfWrVDyFDCJIkAi/7YObSEAdDsjkD4tnatXMa3rVGlYc6zBMm3abgW2HbFrP8WqF+brD0xT0IgF9SmBAA2j9sCcpSFSk9RQda6gEUmBAsANr26Y9cKCkpymMujvDflbyrsOmqT8jh8GUt2TIBeRryVj73VFVHc6GbLnX6BWJt6wRbBzgnDqbVkFV6wemi2pJqjUCBaJa+qwv74B0MkatZeZU1rRsxAA1OYJFugt+3fDhQ8aGmwWjTpvUA0U1kwGPx1Gg73CyTYAgfEcKcFQIJg/GyrcT8PZjJViFqFix2DMi1EaCfMBckhdQiLRfqMzTOlVgqqAtxPlQLuCSBAG4n3x947xzNHMvSqNqqqmmdMEMRMIosIkQL7STucGOE5fUzc4g+Q6tLg6SLhQhHm2ubSeosAuJRioaZcSAQQRfad+icMrnfuvBVqpAq5i2tepafMCbxoEj5HGbNmmSk9EGEdlY+unVH/wBp+Qw85vNipw0IN6NeYnZW1QfaTp94xNwSmo4Xm6jBQ06UbSoYHSAIMTILG++NDTCzzJtpCpcPps/h6uqISxrgAIpJbz0zMCSTHboMUeNZunl+FUsi5DZhn5jqrf0NyQG380QNO+/zM5INT4DVKVCjc2dSkqR50BEiDcfvgL41yoq5fJ5zy6qlPl1SB8Tp1MCJs30HbBNufijJt8F9+zTStHiLydS5VugiCGO8zMjaMBfBmeFDMCsdqYUt6A1Kat/6k4YfAVJVyXFHNxyACAY/LUm8GPfCnkFXl1ywJmmFF4gl1I6H+XbBgXKGbBPPivIf/wBqmYtU5Tz6yKY/9gDirxrifL4zmK+4o+b+7TVSP1Ix64Rx1czU4XS0HnUagR2N5RQCt+sxPoVPe4rxUf8AreIECIBFp61KYkz3HywIGx5KyREjmjn2qZQNmsvVU+StTjV0hTJP91gfliP7T3CrkU2K0JjoAQo//P6YD1fEi1OGjK1QebSYCkwG1Mgq3pIWV9ZXscF/tUpas9ladwGoquoiyjWQSTsABck7DEFiAVDcEjeEQ4zmGr8EoVEJbQw515MjUCT/AORB+YOBGR8X1qdVai9KK02B2cqvxNvfUSbQdr74J/ZdzlrV8pUpnklCzqy2DSF32IZT8wBFsLHG8qlHNVqdOdCOQCTP6+hkfLEEXCB5MBwVAJXqVCSIWTaxLf5YscKq+YwAtNZ80bn0xPmcwKeXNRmUecIBIBkkXuYgC8m1jvivw8CtAFVmBAMaRAFiAYA2tacIL/UQm8L/AKw7mjLKHQVKSEP+V7Aj1PcehnBR7KiuyFgkkzpMm59IiBv0wCXijoxpRTZhZVQEE/Iao+cAXuIxeqHTUV3VfKqysWHlBIETPvHTC6xtZMwzbmfh8UQzThToLwVgGZ7EXJHa/vgPQ4nVCa0Q1GnT+G4B9ZkiIIAI74McQzNOoy1lY6SIB7wTuPnhb8Z53JO6sQyP8LctRDEbmSpU9PUHA0HEiSixDBIASRl8vqauXJWnTrNqVTclQBFrxbbFw0uWKtVlbWyliB/21mACe5YgepJjbFHhvEeRl0QgTXqCo77sqq4Ij+1pxf4q7miSfLznBZeulASgPzJb3ONJdZLy3UeRzyUcusXqNJj1JNzjx4dyutqjl6iuLnREsDM7g9f3xa4XlaaUS9QH8SVBAnSuxI+d/liXhGXVKWvmLrdtOhW86qOsep6dYwom6sixhD+E5Wp98AE6gxLE76esnuQY+Yw05NamjyA1go81QjTuYUExcwInuMS+Asur8QZa9MVFYKhIqREyBOn4piCJERecab4wrtk6dIZbTRBJBCIt4Ajp74jQgqXuVnFGnmgZWg5vEoCZBtEEX6WNsRZni7uq02L6VJIQJAEyJhQFve+GFPGGaBQtWJVWk2HmEixgeh+uAOcpFGIIHcXBtJHTBhZyRFl9zObqCnyhWY0yPgDHT3+Hb1xBlatVaFRFr6aciaWo+Zj2G0wCSdoHsMM3hHg9Cq6feAx5pdaYBAB0rJJi/W222PX2hcAp5c0uSulGBMSSSw3MmTsbDpfucEwxYoyDGYWCUqfEs1QTlrUqUlInSp0gjabRO2PGYzyNQRXZwwY6VVZDSJDNER1mZ9Ik4mzNSg0SKiRubVCRCgC5QWg9Ovpg43hXK/czmxmnYBSwTSqsYMafia8++GlwCjQT1CVlpaV5qVCGAkgeUiWK2IMkbfXELVXKt5mKkjV5jBN4m+9rT2PbF2lxVl+JUqEAaOYisEAMkQRBkWP13xs9F1/h3OprSos2W5khAFVtGqSADYE9jbFudCpjM2hWFNltCKZ1sTqDKRpAOy2E6hB69NuuLWdQhFqcxmJBQ6iSSTqDaZny6NInqWIHo8eHPFFHOOuWz1Ck2owlQJA1Hp3UnoRHS2BvjvwuMnp0lzQc+Qkzy2uSsWsRBmZ8pxM14KsiRmH4Szw3iWcpU2ShXqCiBemHI0j+pJ8o9BA373pLnlEkhrXNjYb39/fDv4e+z9c1SWsubBpmxApnVIMFbkddj7HCdn6Kk1ETUFuv4gGodPMBafTFDUwrdoM31Q/xbUdxSYU9NMNcEzJ6TGwiR/rgtwnMUOUCxhVWdIdhF4ukmb7STYjFOr4WnLPWSsgFJIqc1n8imwcaUbYxZe/pjzTyFJaGp2SmXjTqiDAgROxYebuCcZ3U+Wy0tqty33PKFd8OcSPMqKioYYuqqsSNjFp2j13w6ZqDUEKxV1+JRMGPTa0YznwxWajmTNMuwBU6Z95EDrFvfpi94izIDO6kgu1jeSwC7QRtEdYB2kiUOMENT2U5l0WTctAino0O2lI0wEDGIMMbSSNye2F7ggL1MwfKXWqyqakkBdRsAATMgX7AdsTPl0o0EDEK6fi1AWlmAENB3+LT+mO4Vm+HZmn+JRdGUgsaZgsWEmbyYMgH3w1jMqzPqioI0CzlKJWooEm40atyJt9cMXGKFJIWmIYmWA2GKmdrUaeaQgAqtFdRXdmK6iSO99PsuIqNYO5YmACCTHr+/wDrgn6IxqFpGTp0WpwEJWAOWVAKqBuT37mZ9cL+QyqCmyPVWiwbUdTQKoBGlfXSQSSLiR3sS4dW0HVUsFgsJ7EGOnT3wP4S5zAOXD1ATLoAwIMPOxEgiBsb4RTLv8ldUNiW9PIXrwmNOcLu4Qq9NgxLKGOokEg+YzGxE3xrH2l0py1Nv5ao+hVv8YxiL0a4rVkANKqIBL79fSYaxtj9AcbFOrkS9YFk5a1CFMEwAbHDglOEghZMVDImlfN59RmxAAafSBP0xEcyxCqTKpOkdpMn6nBuhx7KBlRMotNWDKzO5ZlLKVkEmAIIm3fthdoIWIUfEYgeptH1wSzFsJgSvyKuUhhFIK7OJvrOs7/1CBsDh3+0ehqyRYfkZTPoTG+43Bt2wm8Ty9DnsXrppVuXoFJ9kASLASQIvO8YeMnUFfhpFN+YRSKBioEsogSrT1g398UmtEhzVkGaoqQpE6hv2OHrhWVZ+EsUQqDSqC1RYkFpLcxfKJv5WthTHDnKSASxNlF5WJ1CNxNv+MPPA8mG4S/nqaeVV8lgJ838o1ET0Jg9RiyLKUnGTPJZXQytR40ITe2xnfobdP0ONtqNPCCYAnJbAAD+i2AFgPbGM5QmQdQhAXVWuCRsAOpn/GcbXSpE8LVabaScoAjM0afw7EsBaO8euGOJtKunF4WI8BUtmaAALTVSw6nUP+ca99qbqOH1JAkugWe+obeumcK/hHhAyobNKn32ooMch0KU7X3OstB6L1O+Fbxb4qrZ1gaihFQnQizaYmZ3PrA3OCPqdPJC2zY3Kavse40Q9TLO3lYa6cnYj4gJ7zqgfyscUvtP4M1HNc5V/DrCZC2Dj4gY6n4u5M9sKfCqlSnqqU5UwdNQTK6fOY6dBPpPfGyUqdHi2QptVsTBbRujr8QE/MexxTvS6VYGZmVZZxtmpcKK6SDmBUdm1fkprCgjeGZnI6HRgDw5aFbk1amZCCkFD0iFkAadSjUepX4oIg7WwU8d8QFY1qgTyvRKAGpdEpqSkA7iZmL364BNwxVVXdhT00WaisSrFl1SCfzBr6SPawxCOajSNkU4LQVFd6FQaKr66cj4VvC77qLfLbArxGxNRWIkmYIuGAM+0xM+mI8vxGnyajN5ap82kgkO0QdIA0rbqfe+A/D8wynLjVZalhqi/bqQDttecZaYc4nMey6FXhtALBrc940RrP8AiItQanoVtSgBiLovb6gf72GcKzLaGCsoOoQX2i5I+pn5nEGerKtR9AZVMhlMWk3Xy2jaPbA+lqS6NDbHrb5iMNaISnNlsAL3mMxeATNwTtawUfIAYMcNqH7tWboCBt+Yxcn0Egf2jgDl1YurMpYsSQG/O3z3uRbrg6abrlKrilUCGFepphdYcmDJsYKj9OmLiUBJ0CYf4grOqEiCx1kAwGMADVtN+/YYO+EWypytMmryqqs+rUpKsNbaSCoMECBcRbGd8MDtFOmVIYhT2lg1zafKBqgTtvMYucEy8KKr1gFBZQF3JBO87947RiFmaxQWbomV83rzuYJYt5KcE3n4u94xslB1qcIBadP3W+mJ8qwYm3TGAZNGq5irynIlUHlWSxvAjvjd+EcQo08guXzFehTq8tkZOYgiZAkAwDBE+s4siAIQDUzyWTOev+/+cG/B9IGuKh06aKtVIM30CRHrqjAd6ZX4hv1DBge8MCQfkTg14f5S0q+uutNqlPQnlcwNQLToUxIAG/XFEQlAzrsqeYzbOLhR5mby92iflYfU4evstzdq1Em4IcD0Nj+wwhZimqsVRw6g2YAifkwBBwd8D8RWhmddR1SmUKtM9YIgAEm4GKKqmYddVuL5BkFRAaeik7LaNcljANp2kgbQCcPHhhB/CTMgGnVmBJiX7xOFvjeeyrV6zpWDJWEMopMGBgAEMREagG67bYJ5PxVlUyYy5qOzctk1BDAme8WEx8sRG2ATdZ8uY0U6i6EbXbUyjUt91PSQII/1xrlYD+DmCSPuViRBP4XUSf3OMtThzNOgSgiXaEAmf5yB0PXGn8Rz9JOHPTp1qLuuX0KAyEEhI+EmCPQ4InRSkbGUi/ZHmymbenMLVpmxNyymRHeBqwK+0fIcrP1gNnioP/IX/wDYHFXw1nRQzdGqTCo/mPobNYehOwwyfailSpXo1VCPQqqFpVU31H8jH1uV927YZID5UaC5kDULO0seonaPoR/vpjY/sdB+6VQdjWJFx/KoPtt1xm7cPWkFaoG1S3kgEErEKxBkXkMNxawxo/2NUXXKVC4ILVJnSQD5RdSdxiVP0q6d3Ss08R0EOXrsUWQj6SR8NjYEyfTAPinHQ2WpZYMjEhTU0iQNI8onvO8dsNfFeGGtSrroIUioPKpaCt7DcxK+tx1wnU/A7FOZTq/k1BSu5iYkGL98VUBdYKqEN9TjuoczRVQIZWkTabehkC+FrO/FbFirnWEqbEWOKFR5OMtKmW6rc5whXuE8TNFjIDK9nBEyL/544EqFIedSyY3F4IP0n5jA/HtahAjD0DTBRmvTp/eKVNqq1KHRp+FWJkE7yP8AfbB9arfwnMIrlqXPLozTLDyKN/UHoL4BVuE0tahNZVw2mGBBIaIB0iRv07QThl47WDJ9xy6xCjWQrNog/CAoLFiQL+pPriOIAJKW0OcQ1u/nzQ7w3wystfmKjIrpOp1sNRmB6xFvacV+A8Up0zUpVYVPMzFhPn1Rb/xjpuMaLmc6ai0kFKrpp30hdOsneS+kRtYdvljLONZR/vL1atGoEeqzEDcDXcTG8be4OFMxDHuysvCbUwr2szVLT5qi/BqnPzFVkYhAFsojUBMThy4Z4eNYKzV6FFGYgcx9JtEwIvuOuFThVYvVc5duWhp0/KFBMQ1vf98NWcLfd0UX0OxYxcahTAkjYSD6T8sahosDyMycOEeDc0aYFPO0dALXpEkHVpkEiJ2GBWc8JUKLPq4hRDTBWCdJFjYEkYZPsfYHLVQABFaDEyfKu949LRtjNOK1GqVq0tANV7DrLE3Jwoi6YYDe6L8Q4Xyq3KU6ySApiNWqL36GbYOVvBTJlufz0YBQYVCRvuDvA9u9sAuF5omtzSAeWmuDt5FCoP72n640PwS3P4c1KdtdO0+UNJG/o3rgLhU1rXE2WeVlpIIHnJAKuDFusg73kRb5zg7wDwgmaQtTzQOmxHKMqe1yMJRzcPoKmcal9lDk0KsxapG1/hBv3+eJKpjAXXCVOJUVp1HybvUKq8o5W6mDYLqupECZF798BsnwyrWnk0nqDbyrMe8WBxf8QZ5RmqzadTrmHgGQumTexBDb39juMXvswpk52RMBGJv02E97/tggVWUEwl3N8DzSyWy9QAAE+Q2mf3g/TEPEOF5iijJWp1Eps2kzOktv7EjfDr9rleK9MSQDShr2MsYB+YGFKtlwuVIYsCzq69dcCopsY0xNzeemCa4k3RFobpKD5SpB5bfF+U/zD/OMEqZrUvMpq0xIEgsovttHQHDPwjwlSq8KbNEmnmE1VKdVSZTlkwI9YvH9U7jFLhv2hZqo45xVlWBUo6FhwIncbn3i46Rgw+8KPpiM/v8AnsgvF+dUydUku4KOQDJJtdv8NXp6Yr5bLVUpioa5dadIOyBZhY9DG9gcEPtGzAqHMvQOlOUAumwCimAV9iJEYS24pUVqD0wdSoi1E6MFZaiA9/MurbYdsWSqptm3VXsnk8vSoZ0ZlWFcEAEgRqZASDI1fGZgYTc5kKlNUZkKq4lSeoiZ+YIOHjI8JfilbM1HqItQVA7VJ000GkSSGO2wneQPbEvjnLnVlkq5qjm7NpelCwgU2MdQZv6YWtGmizfHYkzNHQxXt+uLHDFpliKm0WkwP2wJMBMa3MYWg8SqinXFLL0edXSlC7RTJOolpttB3uThh4FwzkoZd2eodblwA0kCRbt2vGIOAcAXLgM0NW8waqCZcFplgTc7e2DJ7nHnMTiDV9Av15r0+Fwwp+siOQ5fzzVbOtVAJpqrGLBjF5G57RPrtvgR4p4QKyBihcqLoGif+MMHFMhmEXWppBREqWmpc/yjb6z6YSOHccrGmKlaqApLBVAEmGI7Tb/frpwmDxDC17co83WPGY3DODqb8x7c+ig8KBOdXKoqAIlgRH5pPbBbOZ8qC9GrdbnSQZHY9Pr/AIYCU4NeuFRTKU4Q279O89MWKtPycsU9FQ30giCOpYjp077Y9CNIXliPVm80WtfYtlmTJ1NQjVV1D5qv/HyxmWdrlq1QliSXMk77nGo/ZBTjL1rR+L/+FxmTZLVUqQ4IUkl4bSN7m0gdBIuY74WBco3XaEW4ItPkVjWdkRjTp+RdRJkubEjbQLzafXDl9muYy9OpVo0qz1C4DANT0AabGPMZNx22wjZ22XyyAEalaq99yx0D/wBEBj1OLHgjO8rPUfNEsFYT0eVE+k3+WAIUYYIVXxVlymbzC9RVYifUyPqDjRfskKnKVCJk1jMmb6V9LWt1wtfafkdGc12iqgJF918vtsB1w2fZVS05Jrb1mP6KMCUbBD4WZ8f1PmcwZ1HmuBJ/rEAfLt6YavsoyxNdqhG1MqfQ6lEfofpgMKBrZhyImpUMWjc2sP3w1fZlQitmWi0KB2vc+k2v8sXG6Ux+Z8KXxpwt62a8oUgUwBqdR1J2JnrhXzXD9LMm+liPoYwy+KiDm3tsFB/uzgbyeYdbPEVAWA/ODMgfPt3GGNcBZKqMzuJ6lGfBGZVqb5OooKkMRaQQfiVrR1m+8xjOvF3hmrlax0/Et1IH9IvSPUbR7jscNRGlpRiIMg7G17xOGzxdRFbImvolkp83aSBAZgPWB+mLcAL7FMovcRG7fmOSw3jFdqmTd6ZuFOtbfCRff6g9p64DZHICo1Pm/gqUXl1FLDWT1OokFxtaLAdMeaufZkbzKGrs6leiqQD06STHqJ6nFvI5Su9JErOGpaZUtBIYAkKnVrEekWHfAFxdC2iiKQJ28sfNFc4DVy9PM5hHqlQzKFYqSpIGzAX6teI64ak8F0quUbMUaT1q9Mh1CurJURrMiwSD5ZbvIA2MYR/DtKTWsErT5VYdAo3AvFxMd8ah9lPHqdM/d6ulKlfzrGzOLFZ6sVggb2OA4gnLujFBxGePSevwWK5/JLpNRGnS5DUyrA0wSdIuPcX623wJ0g9cbj9rHhcivz6bculmEIqgC3NWIb3ZZ26qe+MWzuSKIjxGoXHrf/L9sFaJVCb7wmen40zFauAK1PL0yfzIGAHqSCZ+YHtg/wCM+NstF6FNpqBAargQALbXN2na9pvinQy6UqNPKtRSpX5TsCUViCW8q7Hq0E7C59cUuP8ACaeXpVoqa3qKFVS10VWB3JkmNIiBE9sY6eGZmDssRp+f7Wypi6gaWZpJub6cxy9kb4BxBlrMa6kUyfKiRBO8amI8zSLkiZMYq+H6SfdkqESwNSBuVGtjb1v74F0swyqRUZ6J16ajEWNQAKRKzIAVtouLzOPvAswwp0EU+XzsxHUamA/37Y6AFxC5LyS0z99vIXnJQtbMMtMghU0rPmvN53GDXh7KydMeY/Ewvp3I3Poet46xgVm1apmKgoo6EJS1EkbgHUbTZrgfLbEeYqVcoK1O6MCuqDIHl1A6hZiQZESACNicWHclCzNr08la34b8XZbJ0+UtKu7MdTEhAC2lQYGomDExhMz9WgtUhOYFcEstTSpABBsykjsdtpwBymcp/cUc12bNzEXIRTtqYi7MY6yADtvi3T4NUzTVaiOxSnTaoxc/FAsqdRqMC+wPWIxQ5+SqLZ9Pt2RrMcYSqEXk0lJRVVl16tKCBu5ERva9sAsgxTiZJBgUwwExIUrF4MeYHpivSp1aoV1CrC2W8FTcQZv7W7G2L+TyVcuKpr69IK6OWFJHVJB7j6gYFwS5iZKO8c8S1uIVvPTWkKBZRF9YaCLn26bfOzH4f8WHLUuUtAETI8xFzvJM/KBjOq/Enp0tSqDUquXQCSQn8zgxELpHbbFulXPLC878RYYuBqVi0nSB2jsO2FWCOajjI7aLQ+FcUygCumWgj4CKpMzNzI3/AN9MV/DHFRla9by6hUVTYx8MgnbeYETsBhD4NXNF4qhpAIXbTTDGST2uRvsCJwSydJ6aaaylWVSKbBrdSdgZk7yfpvg5EXQtpVC+GXO1gm7j+fFRHqU6LcwsLl5G3QR0A/X6LWV4wuoAmGmINv8AZ9MG+DZswyuVECbSQZBE+02j03OPnFOAUKy800g7KpPk/wC5aOm/p6xjm4h01CCV3MFTAogxffvKtcAp0qiBq9QK0wyqdovMsNrRG8nDRxfj9IZZ0pjUSmkIIMAiOhI26T2xj3hypXNRabAzq0rrB3IJjV/ZBtPTDp/DcwI1JqHXSRO/740064AAqE+yyVsI+SaLRfrdZxxdKFOk7UqKMHsjbaGYQAw7BvMJhSLGYwLWipcAKlOmtmcAMwLSSS6iDLAgQCAoAnfD/U8ON97NSmAoC/FUQwSWE+XcHSSZBiV6g4RqnE/PmZIqEuVFPT9GBBgLYmw6jqcPD2l1kAa9tO4Nzv5qF8ytUJUrhyrNzBDN/YFwJ36b4HcY4fXRaFepp/FqMECkEwttJA23AgGDPrilQ0kwSzVOaIUWkEKJMiRBi0HraMTtm3rZimgIimxCTtMXJ99O/tgwBM7oM7g3LNvZGcr4srGjUydZ3zCVAeVzCVahUFw0vMrBIKz0tHVazOaq8lDqhQdPlYzt19x74u5DIEljVJNMfEygFmgknlk/v1wDrMQgWSQYb064hCttQiwKeuEIyZ1Xq1KZqVKbyF/KZXy++n9MeuL5JnyWZZTqai+qqw2XUyjTJ3kFbdx6YoUM4lbOJUZNa8sjSR8MQDM2kEnvvj5x7PtyWoUmjLP+MUUwC6sE+m1tpvvi9jbz+EqJIM/Dl/ao8SqNUzCjluEc8zlahJIBOqNlm9t98eaGap/dtCkpVIfVBgGGLCbWgHpBNh2wcQf9MtcFWcsQDuVLMbA/69u+F+vw8rlaVYi2olh/MA7LM9DII9bdhiWNwigts4eaq/wXipy9es7MUYMhCzquCSIF5E3HS+K3EszVqIztSKU2cuTA8xJ6gEQOthc4h4UArs1aIZEAAuQD8I+Si/oMXXLoK6MitzDpWqxMgEHyqL7AxAgD6RegsFQALrnzonj7PMglU1GziUzSp0rQwIYsCB5SBJ0hiIO8YDcQ4lTooEygdUspZiJqHeWC26bfPEPDc1UppUoDSFamqkFQxMbMCdouLCbn0wE4nmSCSHKhXCHu3t2I/Y98U7OHTsjpNpOpkON0znN6aiU1A0dSOgi0R64q5Pij1ajrl2RaqqzPSrAgNoEkoy7mBMdQOkHArOPUWgrHy6w2ltpvfT3I9+2+ObIU6q06g1rVNMaIPmYgdbRtA2FsSXkGUurSotIyybX7ohk88AqpltJqOVBBF7i5M3aNr9h2jFzhHDmOYao+gU1cgaWKyZgFQBBB23HXfEfGKdemipVy9Ifdqa5doqEvzCFK1TAiIdQP3sALVXN00oJlhVL1qQDERHwiSNVlJWfe3ecJawAIq7y51gBsYT3lcrlV0NVcioQdKoBbUJgzuYWYGwGAHHq7OkIqvTLKoqBoNN9YUSJGpb9D+84C+Nq7mlRqUiYH4qkdIAIPyBn2nBXxbT/Cy7ByErIzVKYVj51YMhGkHSWMi8Tp9LEXRISKTLNcLHyfO6KZDKO/4RrO9aJc6AiKOmnSJIgGZJM4lo8OztFilNgZBI0sI37OPUY8eBWU/iJOlKeknUSNZPmB1NM2BFupvfB/IeIKVZ3QSCrab2nGOs0OdIXWwj3U6cOOunnX7qj4b4WUfmVWmoi6VHQHZzJuzEiJgeWIFzg3ms6qCSwG0yY648Zghb/XATxB51ZekW/f2wrTRbAJN184rx1GVgHBMWAPuP8ALGZcT4c9F0agAFKlNBGoMTEi53YCYsJU3vco2YKVE5hUUzqkkxePhP6mfl7/AHJ0y1J6de+kyrz+XdWB3BHfe2FNrPacyY+hTqDIRfz6pPq8MqB3elUJZKkpUCFGJAHc6kg9CPWcRZnJ16jNWrlVOrU7EgC4j4UB9o+UYYXywJVKkitB8yk+eLkkiJPoe5tBwL4hRPNp0+aX1N5kqAG+kwbAW/xxup1nPdAWGrh6dJheZP562U2X4rSXKlOaAD2+NbyAB6bbRHvhVzObaotMNAFNNCwNxqLX7m5+QGLVfJoAgIKmLkHVq6SB6GZFtjbHr+DvyEqrVQhyZQMdSG/xLGxAsRjWVz2zGq0Wq/CcwzQwpVCCCVBQ+aJJEaTNr4XeP+FHYM+UqpXppTAKo0vEk3Ubzv6wbYD5mM1WAoU9OtTCoJLGQbAC5wd8GPmMsVzVRGWk68pCwYLVuTZo0ysd5ImAYaEhrmNsT2K1mqyq+HAdxI+MKgOMkNpUIQXVaagxEGJsCIxTo5ovSp0GEB3swNtOtiRB2vt3w7cTp5SuDVqZZaepSQ5MOCAWhlBESIYMDMsAYOEIUFGVZiTq/KCPh/E6Hr/zjQ15dcrJUpNYbGeyuEUC1abGEFJrmDDX3np+gwV/h9XMUuZoUBB5pbyjUQBFpJ9Om+AWXyql6nN1EIqklNl336mO49cX89xJXyvKLeVG5lOIDaiI33kAXHz3wQGqBx0A2UjcTV65heWKa6ApJJdiReYmLD98NXGcvTbJDNJQ0zUNOnRGmSIJJJ7z1ubne2EzO0UGipTqc53K6xYAGwA1LEHYRf13GCmb8RVXorQqMgekCtOmgIgttJO7SbnpHvgABAvp3RukTYXjl9tF5Jy4yeXK0AaqKdbsNRZi1r9lA2tucQ5fKE1FZQ9TUhCrRaDNrrBAHy77HFTKVuR+GPiJhSxtI+IjpEmMEfDvGUyWYdqaPVYAqqqshGcQSOwmLehxcQEBJuOf0+33VHj/ABOvS5bM9U1WAP4zK7AJOgyN7lviHQdhgj9n+XOnMmsWHOUKJ+Ji2ok3vJ3n3OKlSjTq5qnUr63V0OhIFysQljbckzbaSZIBfhnh+tl3FWq9H7y/9HSJLLTkXnTYHTYAEwPfAEXQEywzqj1bOhqLDJ0ndaehEBUzUEKDCwW0kEiYvfpjzwtSoyxrOVp1QZLNFlW0RIEmQAbxPXFXhXHzlKdQ1agUu50lJOpVgQJF4MgHsJwPy1cMtSpy6hpMJpipJBhgxESYEyZ6/O6HglPovbTmBM+19uqactnsqczS5KfhmhUpkr5dtOlyPzRLATfzemBnD+IqMxUNxqYBT0JE2Eel/bV2nFEMX11aShQiaQB+a4ZttxFiPfBbh2WogK6gqHCnSDBEXleoI79LYjGwlV6xMzba215TWnEA6gHciMJ/ietQqQjO5rAwgoHzz2MWj3+WLqcAWpPP1tDEK3MIFVJOlyqGASNxYgzYCBj0i5bK1lpoioaq6Q1+hEAze+rf2B6YymxsuyyXUxmS/ksnVRdNdy2qTBgmOxPU4q8XpFQwRitNqZDlySF6KF/NqknuI+WGbjCxv8jt9P8APARKAqg06kF079ezRsfpvIxnd6XZtlrDQ5gYNfN0Nqu9RFfljlxcF4kWhwdIYQAT3ifTAHOU6rvSqCbyEGqWHxNew6bekb4dny5CnUAwAv7ftthSzFVJo6tSOvxHbpFiD3xpwrgZWLHhzct5VPIAMHVlsWLbxp72JkXxRysqgKWY/FqiOu3WcEHqB6pUw1NUiSBJ8o677yfmcUacmkmksGFtPxAjq0ASLwOuxvjoArmEJo+yDJLU4rl0YA6A7bdQPcEEG4IkiAY3jRftT4cuT4TXpPmDUFWpSTL02AHLCvqIFzJ0zLWmBaSScw8PcWGW4nl6tEK2g6WDMIa2lvMBaTOkx1W3TGjeNKn37g+a4hVdGYAU6NKmSyZf8ZFe5ALVGi7QBpgLYksLjeEYBiVmWedqr08u6AVEJFZ4g6VN5M3Bn6/o0fZ7kKHLyjs2upWrZjLooNlDUnBDA2mWQz2cdsPfE/ssWrxcZo3ytQa61PoXWAFgbqx8x3HlYHcYT/CmWy2UTheer1NNHnVw1MESKgeoiVAvxMunSrRcaadonBSALIbnVWs54Lp/eczRLLTGXy+VWpWvCpobmMFHxu7KsTeThX4uiVF5CkLRBIRmgNY2BM6Z0zPqeuDfj/jYfiOY5FUPSqrl21U2DByiPpW24Mk+hVcJvC8t+FT1NfXNMNa0yWF7m4v0HucG0SLpbiQbGPP4R3M+GM/TpE16aZYUxKB3UmoR8KKFJJAG59J6XFeHOWK2qvSMik6pv5qrAwT/AFQNUHvGKnFawzWYREO0rr7jrHoADGGHgvDqlXL1alFQVoRKbtFwCR8USDfpv0OBcXbXT6TWZTmsY0QvM6cwQgggXvILWggdbTf13x98OZ+jltYrCmQNYGstqY3UEBUaYuJOkDvbHyuFOVRaSsai1WJqKZEs3lAJgkgGDaL4koZVKrCi1CFpyZYwUB2Fu59SIxZMpNmiNgo8vTU1svyn1BQ5Jk7SpgdJv/niw9epUUFTpqq7KA35SYA+Q3+eKq8PFNFelUIXndDNoI69/wBoOJMznDSYFRzEK6t40iO3zU/PAvmLI6Qp5jnOxjupqWSUEOQoVDywGBqQwA3vtMwbRAtggOJOlQioZBp7qZ1WjWBEDbaMVaNBSXAQnl2MGNTSCZjc3tG2L7ZZfu2lmErMNB8pJtIIkWNxHXCiCgfltN9le8OCmUegzGlV5RdGEGWseoIuLR22OFbjXEq6xTrKFem+pWAiRBU+hBB6eoww8HpB9NSWDr5T9Li9rY8ZTh1CrWeq71KrU/NDkEEATMBRYHptt3wMWVSA4kCQOm5Rrh3G6NOmKdSppdfjmd47xH64D+J89QzClkaSg8pIImWGqJH+4OFaopqPEXZtvUnDBRpUfuB1PNalUamV6rclY28pUXB2Mk4SBJJXRe8sDaY6Kr/GK1dqVJ2sCJjd9N5Y9dsEc5Rdir02Cusm4+L+rvscL/DR+LOoKQCRqFmPb0nvhmy1fUitIErPzxkrSCCF0KEOBDlTzHGBVpOtReWVhWvfzGCfYThczqBzRUvqVfIXG0kzY+gjv++CXEqoqu7of6OFmPiJ3+V4wPThbMlKQQhcpPyJn9CP/E400WhjYiJXMxTzUeTMwup5cU6jBo0uIF59v0tilw/MMtNRpLC8RHf1jFjMUESUIOpdiPzX3vtilVy7PTUKpIGxA95H641B0LLAOql4DlEr5mlTuiEHWYBJAgmL3Prf9MahmaWWXw3xD7spSawNSmWnS3MpARO0ppO5uTGE7g/hCpmM1ToUDo10XdC6sLAgSfKN5/LOGLi/g3O8O4XnxWak1KoiaijsSWFVCphkXpI+eGm+6uwEQt+XbGbfZT4dy1XJ5TNVKQavRastNyT5Rz6hss6ZubxOLq+PuW1Wi9JqldazIqKI8s+STeSdrAzGLX2QADhdEAyNda8RP41TphTXh2ibUovpiXLFftJqqOMZs06QCLpXyCAG0QWYC121ScLXGcsq8tFqmsxJtqnl7AJE/wCA2xtq+EcpmOLcTWsGCCnRcxUK3cOWJM7ftgfm+CeHMudS02zDA20VXYSD/MHCmPSThutglNcGyXLMeF5NYVVQtXBBULdiT6DoBG9j+7bk8nmsqAWy+YpsQAK6a0CxsCfLAJvpuDscN/DPHmWy9cUqWRSirGWZbNHRmhbn5nF/PeJecH/6VUeroply+olTLXGkCw/fFPNlTJzTv+fLLMuKV6laozuWJQrrckmdJB9rexxFnKIqK+hyCbeaAXFpAFj7fMdcHOJFXfzNpDNe02PUgb4lzHDaWoUhRFVfLpqxpkfmaQQYA6G+3fAZ7wUMWzBJ+Y4eyBoWYIdAbzZYIMgGVBB622uMSZemSVQKivVpsBq+FV3kmDYXgEGSQOuD/is5csKGSrUxTcrILGVOkSgMGxYfWRsRhayuVqOxALLFEAMpiDNhMeknDG9EBIj1L1ToVlqLTWtyghUjSDLzJuSbmQQenphpp8Laplq1VnBmoAbARaFNoFtIERhdy9QEgLrPJBJZhGo7xe5vfb98e+F5ms6VaTqdDLzNQIKutjB1eUT8InecR7QLqNLnDKD/AHz+6t5lHpIWQhgyrqUegEne8gQdrQemHRuIZcoGo0FpGqqqzMdTEG+kdAP3thboZug6rT1IjsOWs2uB8MWMbdpt3GPme4ZpGpCqhfM4LQo0ybWhevpjNnIfEWTzRYaObNfTYfXW3JJ2dzPKrOAsFKhAnpDWwV4RxAVa3mBiowLINtRQofWDbr1wN8TeauX0kFgNa/ysLEeuwvi1wnLRUWmhYF6aM5P5TOq1ttj/AI4gsbKPcXCXawoOOZZqFQ03iYlSLhgdiCenT3BHTH3hWXWsuliQ+rykbgRb17j5DBXjVJa9BnLLz6RJYDsDBA9Ig+/qTgT4SqAZhZkWtHcbfpOIGwbKnVS8Eu2Rfh+QCrmCzKFSqqEMQCZWRAP0+mBnEV0FWpFwhc2a66o3Cnr7j54NZHKTnMxXqfBSNx3JUC3yt7kYj8TcLZKmXrLq/GqfhqeoGnzRcwxJ+WLMxBCAETIPn0+aE5bIkmlWWpqapUCEGBBa0eve3S8YoV6D8iiZhCDF9zP+RH1xez/hvM5erzGVqFEvqATUVQxE+YADf6SMUFWUQyDK/S5t/j88U4xomMbJumHI+Pny+bXM08moZaVRdJKiQzA6iVUGR6yb74m8Y/aVxDOZWpQq0MulGoBOgMWgMGmdZESBcjr64Xavh3MqqCnRaYOqWXqRYX9PXf5CT+A5gUHQUapcmFl00qlmIs0klvlAHy2cI8ispxdGf/RvuFovhrjmX8lXnsudRSa1dUNSlXEkmdRF77Cw2WwAFfwX9p9PJ5Cnl0y9SpVU1WLGAg1VHYbEsbHaB74Um4dXKEJRqUahadVMoFH0qSvrH06Yj4XwOroCVqTx5j+Gyqbk7mTq37dcC2iQScpTX46i8AGo3pcafVDfFfF8znM47V2UNV0agkrTIA8hgkzAM3nfEvDnqUqqUWfUlJGKAdNRBMfO/wA8SZrgGaq5nXpdVsFZyhNgAJg9d5jBDjHhyprITzCQTUFpMdAT6kbfvg2U3akXSqmLoaCo2O4/KYMrRGlqm71KGoT77COkCfngsXq3OtDGioDoItGkn4unb1wGy+ZrBUHIIKWEsPhO43+f0xB98zQq0oy5CJqB86kMjDY3mQQPoMJdRqG2VPGNwwvxW+/ngUmY4c612V2k9DtMn9LYKGqFoVGp1KhdYNNLFbTK3M+ba3pgXna9eoxAowFULTLMLXkzBk2gC9vXEXCKNfmHmJpUKeoOoyI2vYT9cXSw7yQHNWbF43DspufTqAkbSFcpJy1VWl2I6hd92ghZk3IBJmN8T0xUKgGNU/lm4Fz6i0/IXx4yolmYiOgkEH59D0g367bY8PmqxzNCll2YPrBrMrFQlL85c7BSpJ81pUdYx0jFNkheWYH4vEBjrk3J5duQXVpIAqKrKQAYvJO52sInC5xzJcoIyNpo6AswSQZGkQQT3v7z0w3uoMjdT3G49Ril93Dq9NxKnup3Btcm+ynt29JVpB4gosFjXYepLTYG/KOY6pGJV6iU8uRI8oeLwBup33LbbRNrYdKXFmqZX7pmKj0uY6qxhYrQZAkSbxB2nteMRfwin94Bp0Eph0INU7o8iHABgW1bC/UYE5+ln2qUS1JX5DEqyFVDmQQx2vYY5bqLzfKV6tuMoNMCo0juPyF78U8JNNKA1As1QrqHXVfb6YJcF4MKr5vS1SmaKJF/juSd5sFAiO+BdTK56q4rVwS1O9OmTqEgggfFYHqdU29sXuE/eRVqO9ErzPMSH9gFgNtAO++B4NTcH2VOxmHGj2/uCi4twl6VOpUdxcFo0xqBvuD2BttgI68irTeFkqG0g7Wj5Tvh54lxOuaTKtIMdMKhRGUW6hunfFLKUneKlfLZbX0HLAKgbDUDv7WGK4NX/U/NQY3Db1BHw+xUXhfiuYSrXaiAtQsrNr6WAiCp6dx7YLZcZmvnKdd/6SmjedTrUNIGoo8BRpYiARtIjzSIoc9cw2ZSgqEADlj/ALoIAMksYPb+yMM3A+OtSUCpl55pOsBgdG8SbT8upxTqVUj9JlWzF4ZrweI2O/TupOJ1sxTgPxHLgkhPxaIUNYmRLiXJIBgxAEDvlfF6VVK9VNNNiGP9G0L6xq28x26bCww/+PnrZxClGpopwBytAOsz+ZifKBuIHQ7kiEHJeGswFAemdv5gY9N8C3D1AJLfknv/AOQwzv01B+4fdaFjsdjsejXzZdjsdjsRRdjsdjsRRdjsdjsRRdjsdjsRRdiHM5ZXADDYgj5Ymx2KInVE1xaZC7HY7HYtCux2Ox2Ioux2Ox2Ioux2Ox2Ioux2Ox2Ioux2Ox2Iov/Z"
+                  alt="Cover of Grimms' Fairy Tales">
+
+              </a>
+
+            </div>
+
+
+            <div class="p-2 pt-3">
+
+              <span class="text-xs font-bold text-[#ef6b56]">
+                G · 09
+              </span>
+
+
+              <a
+                data-template-id="book-title-9"
+                class="canva-link block mt-1 font-bold text-[#17324d] underline decoration-[#f6b92a] decoration-2 underline-offset-4 hover:text-[#ef6b56]"
+                href="Grimm's Fairy Tales.epub">
+
+                Grimms' Fairy Tales
+
+              </a>
+
+
+              <p class="mt-2 text-xs leading-relaxed text-[#547088]">
+
+                Classic European folklore, though best suited for slightly older kids in their original forms.
+
+              </p>
+
+
+              <p class="book-author text-xs font-semibold text-[#17324d]">
+
+                Jacob and Wilhelm Grimm
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =====================================================
+               10 — THE JUNGLE BOOK
+          ====================================================== -->
+
+          <article
+            class="book-card reveal bg-white rounded-[1.45rem] overflow-hidden shadow-[0_8px_22px_rgba(23,50,77,.10)] p-2.5"
+            data-title="the jungle book"
+            data-letter="t">
+
+
+            <div class="cover-frame rounded-[1rem]">
+
+              <a
+                href="Jungle Book.epub">
+
+                <img
+                  data-template-id="book-cover-10"
+                  loading="lazy"
+                  class="canva-image"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRydTc1IAv3U176O_655jnrImvFGLHprpOWh3eBToYkjw&s=10"
+                  alt="Cover of The Jungle Book">
+
+              </a>
+
+            </div>
+
+
+            <div class="p-2 pt-3">
+
+              <span class="text-xs font-bold text-[#4ab99d]">
+                T · 10
+              </span>
+
+
+              <a
+                data-template-id="book-title-10"
+                class="canva-link block mt-1 font-bold text-[#17324d] underline decoration-[#f6b92a] decoration-2 underline-offset-4 hover:text-[#ef6b56]"
+                href="Jungle Book.epub">
+
+                The Jungle Book
+
+              </a>
+
+
+              <p class="mt-2 text-xs leading-relaxed text-[#547088]">
+
+                A collection of stories about Mowgli, a boy raised by wolves in the Indian jungle.
+
+              </p>
+
+
+              <p class="book-author text-xs font-semibold text-[#17324d]">
+
+                Rudyard Kipling
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =====================================================
+               11 — LITTLE WOMEN
+          ====================================================== -->
+
+          <article
+            class="book-card reveal bg-white rounded-[1.45rem] overflow-hidden shadow-[0_8px_22px_rgba(23,50,77,.10)] p-2.5"
+            data-title="little women"
+            data-letter="l">
+
+
+            <div class="cover-frame rounded-[1rem]">
+
+              <a
+                href="Little Women.epub">
+
+                <img
+                  data-template-id="book-cover-11"
+                  loading="lazy"
+                  class="canva-image"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWUEDDA3jHiiKzfA07yDzO-MROoYtBRAZP3vaEzIS56A&s=10"
+                  alt="Cover of Little Women">
+
+              </a>
+
+            </div>
+
+
+            <div class="p-2 pt-3">
+
+              <span class="text-xs font-bold text-[#ef6b56]">
+                L · 11
+              </span>
+
+
+              <a
+                data-template-id="book-title-11"
+                class="canva-link block mt-1 font-bold text-[#17324d] underline decoration-[#f6b92a] decoration-2 underline-offset-4 hover:text-[#ef6b56]"
+                href="Little Women.epub">
+
+                Little Women
+
+              </a>
+
+
+              <p class="mt-2 text-xs leading-relaxed text-[#547088]">
+
+                A heartwarming story of four sisters growing up during the American Civil War.
+
+              </p>
+
+
+              <p class="book-author text-xs font-semibold text-[#17324d]">
+
+                Louisa May Alcott
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =====================================================
+               12 — PRIDE AND PREJUDICE
+          ====================================================== -->
+
+          <article
+            class="book-card reveal bg-white rounded-[1.45rem] overflow-hidden shadow-[0_8px_22px_rgba(23,50,77,.10)] p-2.5"
+            data-title="pride and prejudice"
+            data-letter="p">
+
+
+            <div class="cover-frame rounded-[1rem]">
+
+              <a
+                href="Pride and Prejudice.epub">
+
+                <img
+                  data-template-id="book-cover-12"
+                  loading="lazy"
+                  class="canva-image"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBn6DpUPJQpE3DEmYfmbzfZBB2mL5TLassJTExrFPScQ&s=10"
+                  alt="Cover of Pride and Prejudice">
+
+              </a>
+
+            </div>
+
+
+            <div class="p-2 pt-3">
+
+              <span class="text-xs font-bold text-[#4ab99d]">
+                P · 12
+              </span>
+
+
+              <a
+                data-template-id="book-title-12"
+                class="canva-link block mt-1 font-bold text-[#17324d] underline decoration-[#f6b92a] decoration-2 underline-offset-4 hover:text-[#ef6b56]"
+                href="Pride and Prejudice.epub">
+
+                Pride and Prejudice
+
+              </a>
+
+
+              <p class="mt-2 text-xs leading-relaxed text-[#547088]">
+
+                A brilliant romantic comedy dealing with social status and manners.
+
+              </p>
+
+
+              <p class="book-author text-xs font-semibold text-[#17324d]">
+
+                Jane Austen
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =====================================================
+               13 — THE SECRET GARDEN
+          ====================================================== -->
+
+          <article
+            class="book-card reveal bg-white rounded-[1.45rem] overflow-hidden shadow-[0_8px_22px_rgba(23,50,77,.10)] p-2.5"
+            data-title="the secret garden"
+            data-letter="t">
+
+
+            <div class="cover-frame rounded-[1rem]">
+
+              <a
+                href="The Secret Garden.epub">
+
+                <img
+                  data-template-id="book-cover-13"
+                  loading="lazy"
+                  class="canva-image"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSshUb0PY6T25GNjOVWGUzby59DYxuuPKP4bz1UV4ZBHQ&s=10"
+                  alt="Cover of The Secret Garden">
+
+              </a>
+
+            </div>
+
+
+            <div class="p-2 pt-3">
+
+              <span class="text-xs font-bold text-[#ef6b56]">
+                T · 13
+              </span>
+
+
+              <a
+                data-template-id="book-title-13"
+                class="canva-link block mt-1 font-bold text-[#17324d] underline decoration-[#f6b92a] decoration-2 underline-offset-4 hover:text-[#ef6b56]"
+                href="The Secret Garden.epub">
+
+                The Secret Garden
+
+              </a>
+
+
+              <p class="mt-2 text-xs leading-relaxed text-[#547088]">
+
+                A beautiful novel about healing, growth, and the power of nature.
+
+              </p>
+
+
+              <p class="book-author text-xs font-semibold text-[#17324d]">
+
+                Frances Hodgson Burnett
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =====================================================
+               14 — THE TIME MACHINE
+          ====================================================== -->
+
+          <article
+            class="book-card reveal bg-white rounded-[1.45rem] overflow-hidden shadow-[0_8px_22px_rgba(23,50,77,.10)] p-2.5"
+            data-title="the time machine"
+            data-letter="t">
+
+
+            <div class="cover-frame rounded-[1rem]">
+
+              <a
+                href="The Time Machine.epub">
+
+                <img
+                  data-template-id="book-cover-14"
+                  loading="lazy"
+                  class="canva-image"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYx5--fT5FwGvnmXLYOPJw6zLwnXq7x4r0oM9GcUJm-w&s=10"
+                  alt="Cover of The Time Machine">
+
+              </a>
+
+            </div>
+
+
+            <div class="p-2 pt-3">
+
+              <span class="text-xs font-bold text-[#4ab99d]">
+                T · 14
+              </span>
+
+
+              <a
+                data-template-id="book-title-14"
+                class="canva-link block mt-1 font-bold text-[#17324d] underline decoration-[#f6b92a] decoration-2 underline-offset-4 hover:text-[#ef6b56]"
+                href="The Time Machine.epub">
+
+                The Time Machine
+
+              </a>
+
+
+              <p class="mt-2 text-xs leading-relaxed text-[#547088]">
+
+                A thrilling science fiction story that introduces the concept of time travel.
+
+              </p>
+
+
+              <p class="book-author text-xs font-semibold text-[#17324d]">
+
+                H.G. Wells
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =====================================================
+               15 — TREASURE ISLAND
+          ====================================================== -->
+
+          <article
+            class="book-card reveal bg-white rounded-[1.45rem] overflow-hidden shadow-[0_8px_22px_rgba(23,50,77,.10)] p-2.5"
+            data-title="treasure island"
+            data-letter="t">
+
+
+            <div class="cover-frame rounded-[1rem]">
+
+              <a
+                href="Treasure Island.epub">
+
+                <img
+                  data-template-id="book-cover-15"
+                  loading="lazy"
+                  class="canva-image"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSnlHEtkhqUkC8p3Qd6FnHozNeZq_nbD2hVyy3AoE2Gg&s=10"
+                  alt="Cover of Treasure Island">
+
+              </a>
+
+            </div>
+
+
+            <div class="p-2 pt-3">
+
+              <span class="text-xs font-bold text-[#ef6b56]">
+                T · 15
+              </span>
+
+
+              <a
+                data-template-id="book-title-15"
+                class="canva-link block mt-1 font-bold text-[#17324d] underline decoration-[#f6b92a] decoration-2 underline-offset-4 hover:text-[#ef6b56]"
+                href="Treasure Island.epub">
+
+                Treasure Island
+
+              </a>
+
+
+              <p class="mt-2 text-xs leading-relaxed text-[#547088]">
+
+                The ultimate pirate adventure featuring Jim Hawkins and Long John Silver.
+
+              </p>
+
+
+              <p class="book-author text-xs font-semibold text-[#17324d]">
+
+                Robert Louis Stevenson
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+
+
+        <!-- NO RESULTS -->
+
+        <div
+          id="no-results"
+          class="hidden text-center bg-white rounded-[2rem] p-12 mt-6 shadow-sm">
+
+
+          <i
+            data-lucide="search-x"
+            class="mx-auto text-[#ef6b56]"
+            width="34"
+            height="34">
+          </i>
+
+
+          <h3
+            data-template-id="empty-title"
+            class="canva-text title-font font-bold text-[#17324d] mt-4"
+            style="
+              color:rgb(23,50,77);
+              font-weight:700;
+              font-style:normal;
+              font-size:19px;
+            ">
+
+            No books found
+
+          </h3>
+
+
+          <p
+            data-template-id="empty-help"
+            class="canva-text text-[#547088] mt-2"
+            style="
+              color:rgb(84,112,136);
+              font-weight:400;
+              font-style:normal;
+              font-size:16px;
+            ">
+
+            Try another title or choose a different letter.
+
+          </p>
+
+        </div>
+
+
+      </section>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         EPUB READER
+    ========================================================== -->
+    <div id="epub-reader-overlay" aria-hidden="true">
+      <div id="epub-reader-top">
+        <div id="epub-reader-title">Book</div>
+        <button id="epub-reader-close" type="button" aria-label="Close reader">×</button>
+      </div>
+      <div id="epub-reader-body">
+        <button class="epub-reader-nav" id="epub-reader-prev" type="button" aria-label="Previous page">‹</button>
+        <div id="epub-reader-viewer"></div>
+        <button class="epub-reader-nav" id="epub-reader-next" type="button" aria-label="Next page">›</button>
+      </div>
+      <div id="epub-reader-status">Use the arrows or your keyboard to turn pages.</div>
+    </div>
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer
+      class="w-full bg-[#17324d] px-5 py-7 text-center">
+
+
+      <p
+        data-template-id="footer-text"
+        class="canva-text text-white/80 text-sm"
+        style="
+          color:rgb(255,255,255);
+          font-weight:400;
+          font-style:normal;
+          font-size:16px;
+        ">
+
+        Kids Club Matric Higher Secondary School · E-Library
+
+      </p>
+
+
+    </footer>
+
+
+  </div>
+
+
+
+  <script
+    src="/_sdk/489148d8756906ef.editing_sdk.js"
+    integrity="sha512-hxxSbMNp1t+UEu3j/dIQUU4MJnmsCo0Gs3iQVVS706vrCJ3Yt2+ySOlfJEaPyiyQVLjZRmn1dNVqg6M40VZZHQ==">
+  </script>
+
+
+
+
+  <!-- =========================================================
+       EPUB READER LOGIC
+  ========================================================== -->
+  <script>
+    (() => {
+      let epubBook = null;
+      let rendition = null;
+
+      const overlay = document.getElementById('epub-reader-overlay');
+      const viewer = document.getElementById('epub-reader-viewer');
+      const title = document.getElementById('epub-reader-title');
+      const close = document.getElementById('epub-reader-close');
+      const prev = document.getElementById('epub-reader-prev');
+      const next = document.getElementById('epub-reader-next');
+
+      async function openEpub(url, bookTitle) {
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        title.textContent = bookTitle || 'Book';
+        viewer.innerHTML = '';
+
+        if (rendition) { try { rendition.destroy(); } catch (e) {} }
+        if (epubBook) { try { epubBook.destroy(); } catch (e) {} }
+
+        epubBook = ePub(encodeURI(url));
+        rendition = epubBook.renderTo(viewer, {
+          width: '100%',
+          height: '100%',
+          spread: 'auto',
+          flow: 'paginated',
+          manager: 'default'
+        });
+
+        await rendition.display();
+      }
+
+      function closeEpub() {
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (rendition) { try { rendition.destroy(); } catch (e) {} }
+        if (epubBook) { try { epubBook.destroy(); } catch (e) {} }
+        rendition = null;
+        epubBook = null;
+        viewer.innerHTML = '';
+      }
+
+      close.addEventListener('click', closeEpub);
+      prev.addEventListener('click', () => rendition && rendition.prev());
+      next.addEventListener('click', () => rendition && rendition.next());
+
+      document.addEventListener('keydown', (event) => {
+        if (!overlay.classList.contains('open') || !rendition) return;
+        if (event.key === 'Escape') closeEpub();
+        if (event.key === 'ArrowLeft') rendition.prev();
+        if (event.key === 'ArrowRight') rendition.next();
+      });
+
+      document.querySelectorAll('.book-card').forEach((card) => {
+        const epubLink = card.querySelector('a[href$=".epub"]');
+        if (!epubLink) return;
+        const epubUrl = epubLink.getAttribute('href');
+        const bookTitle = card.querySelector('.canva-link')?.textContent.trim() || card.dataset.title || 'Book';
+
+        card.querySelectorAll('a[href$=".epub"]').forEach((link) => {
+          link.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            openEpub(epubUrl, bookTitle);
+          });
+        });
+      });
+    })();
+  </script>
+
+  <!-- =========================================================
+       SEARCH + ALPHABET FILTER
+  ========================================================== -->
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+      lucide.createIcons();
+
+
+      const searchInput =
+        document.getElementById('book-search');
+
+
+      const cards =
+        Array.from(
+          document.querySelectorAll('.book-card')
+        );
+
+
+      const filters =
+        Array.from(
+          document.querySelectorAll('.letter-filter')
+        );
+
+
+      const resultCount =
+        document.getElementById('result-count');
+
+
+      const noResults =
+        document.getElementById('no-results');
+
+
+      let activeLetter = 'all';
+
+
+
+      function updateLibrary() {
+
+        const query =
+          searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+        let visible = 0;
+
+
+
+        cards.forEach((card) => {
+
+
+          const configuredTitle =
+            card
+              .querySelector('.canva-link')
+              .textContent
+              .toLowerCase();
+
+
+          const author =
+            card
+              .querySelector('.book-author')
+              ?.textContent
+              .toLowerCase() || "";
+
+
+          const description =
+            card
+              .querySelector('p.mt-2')
+              ?.textContent
+              .toLowerCase() || "";
+
+
+          const searchableText =
+            `${card.dataset.title}
+             ${configuredTitle}
+             ${author}
+             ${description}`;
+
+
+          const letterMatches =
+            activeLetter === 'all' ||
+            card.dataset.letter === activeLetter;
+
+
+          const searchMatches =
+            !query ||
+            searchableText.includes(query);
+
+
+          const isVisible =
+            letterMatches &&
+            searchMatches;
+
+
+
+          card.classList.toggle(
+            'is-hidden',
+            !isVisible
+          );
+
+
+          card.classList.toggle(
+            'is-match',
+            Boolean(query) &&
+            isVisible
+          );
+
+
+
+          if (isVisible) {
+
+            visible += 1;
+
+          }
+
+        });
+
+
+
+        resultCount.textContent =
+          visible === 1
+            ? '1 book found'
+            : `${visible} books found`;
+
+
+        noResults.classList.toggle(
+          'hidden',
+          visible !== 0
+        );
+
+      }
+
+
+
+      searchInput.addEventListener(
+        'input',
+        updateLibrary
+      );
+
+
+
+      filters.forEach((button) => {
+
+
+        button.addEventListener(
+          'click',
+          () => {
+
+
+            activeLetter =
+              button.dataset.letter;
+
+
+
+            filters.forEach((item) => {
+
+              item.classList.toggle(
+                'active',
+                item === button
+              );
+
+            });
+
+
+
+            updateLibrary();
+
+          }
+        );
+
+      });
+
+
+
+      updateLibrary();
+
+    });
+
+  </script>
+
+
+</body>
+
+</html>
